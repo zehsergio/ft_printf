@@ -2,30 +2,31 @@
 #   ft_printf - Makefile
 # =======================
 
-NAME	= ft_printf.a
+NAME	= libftprintf.a
 CC		= cc
-CFLAGS 	= -Wall Wextra Werror -g
-OBJ	= $(SRC:.c=.o)
+CFLAGS 	= -Wall -Wextra -Werror -g
+SRC		= ft_printf.c ft_printf_tools.c
+OBJ		= $(SRC:.c=.o)
 
 # Rules
 all: $(NAME)
 
-$(NAME): $(OBJ)
+ $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-%.o: %.c libft.h
+%.o: %.c ft_printf.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-tests: $(NAME) tests.c
+tests: $(NAME)
 	$(CC) $(CFLAGS) tests.c $(NAME) -o tests
 	@echo "Run: ./tests"
 
 clean:
-	rm -rf $(OBJ)
+	rm -f $(OBJ)
 	@echo "Object files removed"
 
 fclean: clean
-	rm -rf $(NAME) tests
+	rm -f $(NAME) tests
 	@echo "Library and test binary removed"
 
 re: fclean all

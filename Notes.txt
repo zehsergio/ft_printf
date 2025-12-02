@@ -1,0 +1,2 @@
+It seems a bit complex for me as well, can you read this repo: https://github.com/efelicia/42-ft_printf?
+It is possible exactly like this, but 

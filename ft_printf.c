@@ -5,57 +5,57 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdias-ju <jdias-ju@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 10:43:14 by jdias-ju          #+#    #+#             */
-/*   Updated: 2025/12/02 11:29:20 by jdias-ju         ###   ########.ch       */
+/*   Created: 2025/12/02 16:05:25 by jdias-ju          #+#    #+#             */
+/*   Updated: 2025/12/02 16:05:31 by jdias-ju         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int ft_conversion(const char type, va_list arg)
+static int	ft_conversion(const char type, va_list vargs)
 {
 	if (type == 'c')
-		return (ft_putchar(va_arg(arg, int)));
+		return (ft_putchar(va_arg(vargs, int)));
 	else if (type == 'u')
-		return (ft_putnbr(va_arg(arg, unsigned int)));
+		return (ft_putnbr(va_arg(vargs, unsigned int)));
 	else if ((type == 'i') || (type == 'd'))
-		return (ft_putnbr(va_arg(arg, int)));
+		return (ft_putnbr(va_arg(vargs, int)));
 	else if (type == 's')
-		return (ft_putstr(va_arg(arg, char *)));
-	else if ((type == 'X') || (type == 'x'))
-		return (ft_putnbr_hexa(va_arg(arg, unsigned int), type));
+		return (ft_putstr(va_arg(vargs, char *)));
+	else if (type == 'x' || type == 'X')
+		return (ft_putnbr_hexa(va_arg(vargs, unsigned int), type));
 	else if (type == 'p')
-		return (ft_putptr(va_arg(arg, void *)));
+		return (ft_putptr(va_arg(vargs, void *)));
 	else if (type == '%')
 		return (ft_putchar('%'));
 	return (-1);
 }
 
-int ft_printf(const char *format, ...)
+int	ft_printf(char const *str, ...)
 {
-	va_list	arg;
+	va_list	vargs;
 	int		len;
 	int		check;
-	
-	va_start(arg, format);
+
+	va_start(vargs, str);
 	len = 0;
-	while (*format)
+	while (*str)
 	{
-		if (*format == '%')
+		if (*str == '%')
 		{
-			check = ft_conversion(*(++format), arg);
+			check = ft_conversion(*(++str), vargs);
 			if (check == -1)
 				return (-1);
 			len += check;
 		}
 		else
 		{
-			if (write(1, format, 1) == -1)
+			if (write(1, str, 1) == -1)
 				return (-1);
 			len++;
 		}
-		format++;
-	}	
-	va_end(arg);
+		str++;
+	}
+	va_end(vargs);
 	return (len);
 }
