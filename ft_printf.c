@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdias-ju <jdias-ju@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 16:05:25 by jdias-ju          #+#    #+#             */
-/*   Updated: 2025/12/02 16:05:31 by jdias-ju         ###   ########.ch       */
+/*   Created: 2025/12/02 16:30:00 by jdias-ju          #+#    #+#             */
+/*   Updated: 2025/12/02 16:56:43 by jdias-ju         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,30 @@ static int	ft_conversion(const char type, va_list vargs)
 	return (-1);
 }
 
-int	ft_printf(char const *str, ...)
+int	ft_printf(char const *format, ...)
 {
 	va_list	vargs;
 	int		len;
 	int		check;
 
-	va_start(vargs, str);
+	va_start(vargs, format);
 	len = 0;
-	while (*str)
+	while (*format)
 	{
-		if (*str == '%')
+		if (*format == '%')
 		{
-			check = ft_conversion(*(++str), vargs);
+			check = ft_conversion(*(++format), vargs);
 			if (check == -1)
 				return (-1);
 			len += check;
 		}
 		else
 		{
-			if (write(1, str, 1) == -1)
+			if (write(1, format, 1) == -1)
 				return (-1);
 			len++;
 		}
-		str++;
+		format++;
 	}
 	va_end(vargs);
 	return (len);
