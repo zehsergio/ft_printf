@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdias-ju <jdias-ju@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 10:43:03 by jdias-ju          #+#    #+#             */
-/*   Updated: 2025/12/02 10:43:03 by jdias-ju         ###   ########.ch       */
+/*   Created: 2025/12/02 10:33:45 by jdias-ju          #+#    #+#             */
+/*   Updated: 2025/12/02 10:34:33 by jdias-ju         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-
-#endif
+ft_putchar (char c)
+{
+	return(write(1, &c, 1));
+}
