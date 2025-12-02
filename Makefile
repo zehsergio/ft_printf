@@ -18,8 +18,8 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 tests: $(NAME)
-	$(CC) $(CFLAGS) tests.c $(NAME) -o tests
-	@echo "Run: ./tests"
+	$(CC) $(CFLAGS) tests.c $(NAME) -o tests.o
+	@echo "Run: ./tests.o"
 
 clean:
 	rm -f $(OBJ)
