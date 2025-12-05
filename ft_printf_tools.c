@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdias-ju <jdias-ju@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: jdias-ju <jdias-ju@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 16:08:06 by jdias-ju          #+#    #+#             */
-/*   Updated: 2025/12/02 16:08:06 by jdias-ju         ###   ########.ch       */
+/*   Created: 2025/12/02 19:04:37 by jdias-ju          #+#    #+#             */
+/*   Updated: 2025/12/05 11:12:47 by jdias-ju         ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_putchar(char c)
 
 int	ft_putnbr(long nb)
 {
-	long		num;
-	int			len;
+	char		c;
+	int			len; 
 	int			aux;
 
 	len = 0;
@@ -31,7 +31,6 @@ int	ft_putnbr(long nb)
 		len += 1;
 		nb *= -1;
 	}
-	num = nb % 10 + '0';
 	if (nb > 9)
 	{
 		aux = ft_putnbr(nb / 10);
@@ -39,7 +38,8 @@ int	ft_putnbr(long nb)
 			return (-1);
 		len += aux;
 	}
-	if (write(1, &num, 1) == -1)
+	c = nb % 10 + '0';
+	if (write(1, &c, 1) == -1)
 		return (-1);
 	len += 1;
 	return (len);
