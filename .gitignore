@@ -3,3 +3,4 @@
 *.a
 .pdf
 .txt
+tests.dSYM
